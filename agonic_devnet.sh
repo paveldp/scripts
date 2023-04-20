@@ -29,8 +29,8 @@ yarn --version
 sleep 1
 
 sudo rm -rf /usr/local/go
-curl -L -o /tmp/go1.18.7.linux-amd64.tar.gz https://go.dev/dl/go1.18.7.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf /tmp/go1.18.7.linux-amd64.tar.gz
+curl -L -o /tmp/go1.18.linux-amd64.tar.gz https://go.dev/dl/go1.18.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf /tmp/go1.18.linux-amd64.tar.gz
 cat <<'EOF' >>$HOME/.profile
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go

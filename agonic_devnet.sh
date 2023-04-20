@@ -41,6 +41,7 @@ source $HOME/.profile
 go version | grep 1.18
 git clone https://github.com/Agoric/agoric-sdk
 cd agoric-sdk
+git fetch --all
 git checkout 088b0abf214839326958b9c1109b2d50136636e4
 yarn install && yarn build
 (cd packages/cosmic-swingset && make)

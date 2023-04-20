@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# wget -q -O agonic_devnet.sh https://github.com/paveldp/scripts/blob/main/agonic_devnet.sh && chmod +x agonic_devnet.sh && sudo /bin/bash agonic_devnet.sh
+# wget -q -O agonic_devnet.sh https://github.com/paveldp/scripts/blob/872820f4e879b372ad4dee75a9a29ffab9692e91/agonic_devnet.sh && chmod +x agonic_devnet.sh && sudo /bin/bash agonic_devnet.sh
 . ~/.bashrc
 if [ ! $AGORIC_NODENAME ]; then
 	read -p "Enter node name: " AGORIC_NODENAME

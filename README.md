@@ -4,7 +4,7 @@ update polkadot/kusama script
 cd
 mkdir ~/update (only first time)
 cd update 
-wget https://raw.githubusercontent.com/paveldp/scripts/main/update_node  (only first time)
+wget https://raw.githubusercontent.com/paveldp/scripts/main/update_node (only first time)
 chmod +x update_node
 
 Edit file update_node with your data:

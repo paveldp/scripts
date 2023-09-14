@@ -1,5 +1,5 @@
 # scripts
-update polkadot/kusama script
+update kusama script
 
 cd
 

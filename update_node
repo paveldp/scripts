@@ -1,0 +1,32 @@
+#! /bin/bash
+# based on https://gist.github.com/michalisFr/daa01c7374793a684a3a1f61e4959492
+
+wget https://github.com/paritytech/polkadot-sdk/releases/download/polkadot-v$1/polkadot && \
+wget https://github.com/paritytech/polkadot-sdk/releases/download/polkadot-v$1/polkadot.sha256 && \
+sed -i 's+./artifacts/polkadot+polkadot+g' polkadot.sha256
+
+wget https://github.com/paritytech/polkadot-sdk/releases/download/polkadot-v$1/polkadot-prepare-worker && \
+wget https://github.com/paritytech/polkadot-sdk/releases/download/polkadot-v$1/polkadot-prepare-worker.sha256 && \
+sed -i 's+./artifacts/polkadot-prepare-worker+polkadot-prepare-worker+g' polkadot-prepare-worker.sha256
+
+wget https://github.com/paritytech/polkadot-sdk/releases/download/polkadot-v$1/polkadot-execute-worker && \
+wget https://github.com/paritytech/polkadot-sdk/releases/download/polkadot-v$1/polkadot-execute-worker.sha256 && \
+sed -i 's+./artifacts/polkadot-execute-worker+polkadot-execute-worker+g' polkadot-execute-worker.sha256
+
+if (sha256sum -c polkadot.sha256 2>&1 | grep -q 'OK') && (sha256sum -c polkadot-prepare-worker.sha256 2>&1 | grep -q 'OK') && (sha256sum -c polkadot-execute-worker.sha256 2>&1 | grep -q 'OK')
+then
+        echo "** SHA256 matches **"
+        rm *.sha256 && \
+        chmod +x polkadot* && \
+        sudo chown kusama:kusama polkadot* && \
+        sudo systemctl stop ksm-validator.service && \
+        mv /home/kusama/polkadot-sdk/target/release/* /home/kusama/polkadot-sdk/backup/ && \
+        mv polkadot* /home/kusama/polkadot-sdk/target/release/ && \
+        sudo systemctl start ksm-validator.service && \
+        sudo journalctl -f -u ksm-validator.service
+else
+        echo "** SHA256 doesn't match. Aborting **"
+        rm polkadot*
+fi
+
+echo done!
